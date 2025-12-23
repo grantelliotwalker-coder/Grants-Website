@@ -36,6 +36,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="About.html" />
+    <Content Include="Contact.html" />
     <Content Include="posts.html" />
     <Content Include="index.html" />
     <Content Include="Styles.css" />
