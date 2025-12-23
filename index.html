@@ -11,7 +11,7 @@
 </head>
 <body>
     <header class="top-bar">
-        <div class="logo">SIMPLY HEALTHH</div>
+        <a href="index.html" class="logo">SIMPLY HEALTH</a>
         <nav class="top-nav">
             <a href="index.html" aria-current="page">Home</a>
             <a href="posts.html">Posts</a>
@@ -34,14 +34,14 @@
 
     <main class="content">
         <section class="post">
-            <h1>Welcome to my Website!</h1>
-            <p class="meta">A simple HTML &amp; CSS site</p>
+            <h1>Welcome to my website!</h1>
+            <p class="meta">A lifestyle website</p>
             <p>
                 This is the home page. When you are ready, click below to see
-                the latest posts on the blog.
+                the latest posts.
             </p>
             <p>
-                <a class="primary-button" href="posts.html">View blog posts</a>
+                <a class="primary-button" href="posts.html">View Posts</a>
             </p>
         </section>
     </main>
@@ -50,9 +50,27 @@
         const hamburger = document.getElementById('hamburger');
         const sideNav = document.getElementById('sideNav');
 
-        hamburger.addEventListener('click', () => {
+        // toggle on hamburger click
+        hamburger.addEventListener('click', (event) => {
+            event.stopPropagation();
             sideNav.classList.toggle('open');
         });
+
+        // click on side-nav background closes it, links keep working
+        sideNav.addEventListener('click', (event) => {
+            // if you clicked directly on the aside (the blank area)
+            if (event.target === sideNav) {
+                sideNav.classList.remove('open');
+            }
+            // clicks on links bubble up and will still navigate
+            event.stopPropagation();
+        });
+
+        // click anywhere else closes nav
+        document.addEventListener('click', () => {
+            sideNav.classList.remove('open');
+        });
     </script>
+
 </body>
 </html>
