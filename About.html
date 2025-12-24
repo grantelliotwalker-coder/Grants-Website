@@ -1,30 +1,59 @@
 ﻿<!DOCTYPE html>
+                           <!-- HTML5 document declaration -->
 <html lang="en">
+                          <!-- Root element; site language is English -->
+
 <head>
-    <meta charset="UTF-8" />
-    <title>My Blog - Home</title>
+    <!-- Page metadata, title, styles, and fonts -->
+    <meta charset="UTF-8" />             <!-- Use UTF‑8 encoding for text -->
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <!-- Makes layout match the device width and start at normal zoom,
+         so your CSS (including 18px base font) looks correct on phones [web:5][web:61] -->
+
+    <title>My Blog - Home</title>        <!-- Text shown in the browser/tab title bar [web:83][web:99] -->
+    <!-- Main stylesheet with all your layout and colour rules
+         (classes like .top-bar, .logo, .post, .about, etc.). [web:84][web:97] -->
     <link rel="stylesheet" href="Styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500&display=swap" />
 
+    <!-- Google Font: Open Sans (weights 400, 600, 700) for body text. [web:83][web:86] -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
 
+    <!-- Google Fonts: Open Sans + Roboto 500 (used for logo text via .logo). [web:83][web:86] -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500&display=swap" />
 </head>
+
 <body>
+    <!-- All visible content lives inside <body> -->
+    <!-- ===== Header / top navigation bar ===== -->
+    <!-- Top bar layout; spacing and colours handled by .top-bar in Styles.css -->
     <header class="top-bar">
+        <!-- Site logo; .logo controls font family (Roboto), size, colour, and removes underline -->
         <a href="index.html" class="logo">SIMPLY HEALTH</a>
+
+        <!-- Horizontal nav menu; .top-nav and .top-nav a style this area.
+             Here “About” is marked as the current page. -->
         <nav class="top-nav">
             <a href="index.html">Home</a>
             <a href="posts.html">Posts</a>
-            <a href="About.html" aria-current="page">About</a>
+            <a href="About.html" aria-current="page">About</a> <!-- Highlighted as current page -->
             <a href="Contact.html">Contact</a>
         </nav>
+
+        <!-- Hamburger icon for small screens.
+             The .hamburger and .top-bar .hamburger span rules draw the three lines. -->
         <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span>  <!-- Top line -->
+            <span></span>  <!-- Middle line -->
+            <span></span>  <!-- Bottom line -->
         </button>
     </header>
 
+    <!-- ===== Slide‑out side navigation (mobile drawer) ===== -->
+    <!-- Side nav; positioned off‑screen by .side-nav, and moved into view by .side-nav.open. -->
     <aside class="side-nav" id="sideNav">
         <a href="index.html">Home</a>
         <a href="posts.html">Posts</a>
@@ -32,73 +61,96 @@
         <a href="Contact.html">Contact</a>
     </aside>
 
+    <!-- ===== Main content: About section ===== -->
+    <!-- .content centres everything and limits the width (max-width in Styles.css). -->
     <main class="content">
+        <!-- Card-style box; .post gives the coloured background, padding, radius and centering. -->
         <section class="post">
-            <h1>ABOUT ME</h1>
-            <p class="meta"></p>
-            <p>
-                <div class="about">
-                    Hi, I’m Laura.
+            <h1>ABOUT ME</h1>            <!-- Heading styled by .post h1 (colour, spacing) -->
+
+            <p class="meta"></p>         <!-- Optional meta line under the heading (empty here) -->
+            <!-- Main about text block.
+                 The .about class in Styles.css uses white-space: pre-line so your line breaks
+                 inside the HTML are respected and text stays nicely formatted. -->
+            <div class="about">
+                Hi, I’m Laura.
 
 
 
-                    I’m deeply passionate about health — especially women’s health, hormonal balance, exercise, mental wellbeing, and mindfulness. Supporting the body and mind as a whole has become a central part of my life, but what truly drives me is helping others feel heard, understood, and less alone in their health journey.
+                I’m deeply passionate about health — especially women’s health, hormonal balance,
+                exercise, mental wellbeing, and mindfulness. Supporting the body and mind as a whole
+                has become a central part of my life, but what truly drives me is helping others feel
+                heard, understood, and less alone in their health journey.
 
 
 
-                    So many women are living in confusion about their bodies. They feel something isn’t right — irregular periods, unexplained symptoms, emotional or physical changes — yet they’re often told everything is “normal” or left without clear answers. That lack of validation can be incredibly isolating.
+                So many women are living in confusion about their bodies. They feel something isn’t right —
+                irregular periods, unexplained symptoms, emotional or physical changes — yet they’re often
+                told everything is “normal” or left without clear answers. That lack of validation can be
+                incredibly isolating.
 
 
 
-                    This is where my passion lies.
+                This is where my passion lies.
 
 
 
-                    I want to be a guiding light — even a small one — for women who are trying to make sense of what’s happening in their bodies. My goal is to help simplify health information, break it down in a way that’s easy to understand, and empower women to reconnect with their bodies rather than feel overwhelmed by them.
+                I want to be a guiding light — even a small one — for women who are trying to make sense
+                of what’s happening in their bodies. My goal is to help simplify health information,
+                break it down in a way that’s easy to understand, and empower women to reconnect with
+                their bodies rather than feel overwhelmed by them.
 
 
 
-                    I’m not a doctor or a self-proclaimed expert. I’m simply someone who cares deeply, has walked this path myself, and wants to share what I’ve learned along the way. Everything I offer comes from lived experience, curiosity, and a genuine desire to support others.
+                I’m not a doctor or a self-proclaimed expert. I’m simply someone who cares deeply,
+                has walked this path myself, and wants to share what I’ve learned along the way.
+                Everything I offer comes from lived experience, curiosity, and a genuine desire
+                to support others.
 
 
 
-                    This blog and website exist as a practical, supportive space — a resource you can use in everyday life. If my story resonates with you, or if you’re navigating something similar, I’d truly love to hear from you. Please feel free to reach out for a chat.
+                This blog and website exist as a practical, supportive space — a resource you can use
+                in everyday life. If my story resonates with you, or if you’re navigating something
+                similar, I’d truly love to hear from you. Please feel free to reach out for a chat.
 
 
 
-                    You’re not alone in this.
-                </div>
+                You’re not alone in this.
+            </div>
 
-            </p>
+            <!-- Call‑to‑action button back to the home page.
+                 .primary-button controls colours, padding, hover effect. -->
             <p>
                 <a class="primary-button" href="Index.html">View Home</a>
             </p>
         </section>
     </main>
 
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const sideNav = document.getElementById('sideNav');
+    <!-- ===== JavaScript to control hamburger and side nav ===== -->
 
-        // toggle on hamburger click
+    <script>
+        const hamburger = document.getElementById('hamburger');  // The hamburger button
+        const sideNav = document.getElementById('sideNav');      // The side drawer element
+
+        // When the hamburger is clicked, open or close the side nav
         hamburger.addEventListener('click', (event) => {
-            event.stopPropagation();
-            sideNav.classList.toggle('open');
+            event.stopPropagation();                // Stop the click from reaching document
+            sideNav.classList.toggle('open');       // Toggle .open -> CSS slides drawer in/out
         });
 
-        // click on side-nav background closes it, links keep working
+        // If user clicks on the blank area of the side nav, close it
         sideNav.addEventListener('click', (event) => {
-            // if you clicked directly on the aside (the blank area)
+            // Only close when the click target is the <aside> itself, not a link
             if (event.target === sideNav) {
                 sideNav.classList.remove('open');
             }
-            // clicks on links bubble up and will still navigate
+            // Stop the click from bubbling up and triggering the document listener
             event.stopPropagation();
         });
 
-        // click anywhere else closes nav
+        // Clicking anywhere else on the page closes the side nav
         document.addEventListener('click', () => {
-            sideNav.classList.remove('open');
+            sideNav.classList.remove('open');       // Remove .open so CSS hides the drawer again
         });
     </script>
 

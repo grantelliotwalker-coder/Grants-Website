@@ -1,30 +1,59 @@
 ﻿<!DOCTYPE html>
+                           <!-- Tell the browser this is an HTML5 document -->
 <html lang="en">
+                          <!-- Root element; page language is English -->
+
 <head>
-    <meta charset="UTF-8" />
-    <title>My Blog - Home</title>
+    <!-- Head: title, metadata, styles, fonts -->
+    <meta charset="UTF-8" />             <!-- Use UTF‑8 so all characters display correctly -->
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <!-- Makes layout match the device width and start at normal zoom,
+         so your CSS (including 18px base font) looks correct on phones [web:5][web:61] -->
+
+    <title>My Blog - Home</title>        <!-- Text shown in the browser tab [web:83][web:99] -->
+    <!-- Main stylesheet with all your layout, colours, and typography
+         (classes like .top-bar, .logo, .content, .post, .about, .primary-button). [web:84][web:97] -->
     <link rel="stylesheet" href="Styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500&display=swap" />
 
+    <!-- Google Font: Open Sans (weights 400, 600, 700) for body text. [web:83][web:86] -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" />
 
+    <!-- Google Fonts: Open Sans + Roboto 500 (used for the logo text via .logo). [web:83][web:86] -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500&display=swap" />
 </head>
+
 <body>
+    <!-- All visible content goes inside <body> -->
+    <!-- ===== Header / top navigation ===== -->
+    <!-- Top bar container; styled by .top-bar (flex layout, padding, border). -->
     <header class="top-bar">
+        <!-- Logo link; .logo sets Roboto font, size, colour, removes underline. -->
         <a href="index.html" class="logo">SIMPLY HEALTH</a>
+
+        <!-- Main navigation; .top-nav and .top-nav a style layout and links.
+             Here “Contact” is marked as the current page. -->
         <nav class="top-nav">
             <a href="index.html">Home</a>
             <a href="posts.html">Posts</a>
             <a href="About.html">About</a>
-            <a href="Contact.html" aria-current="page">Contact</a>
+            <a href="Contact.html" aria-current="page">Contact</a> <!-- Highlighted as active page -->
         </nav>
+
+        <!-- Hamburger icon for mobile view.
+             .hamburger and .top-bar .hamburger span draw the three horizontal lines. -->
         <button class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span>  <!-- Top line -->
+            <span></span>  <!-- Middle line -->
+            <span></span>  <!-- Bottom line -->
         </button>
     </header>
 
+    <!-- ===== Side navigation drawer (for mobile) ===== -->
+    <!-- Side nav; positioned off-screen by .side-nav and slid in with .side-nav.open. -->
     <aside class="side-nav" id="sideNav">
         <a href="index.html">Home</a>
         <a href="posts.html">Posts</a>
@@ -32,48 +61,19 @@
         <a href="Contact.html">Contact</a>
     </aside>
 
+    <!-- ===== Main content: Contact section ===== -->
+    <!-- .content centres everything and limits the width (max-width in Styles.css). -->
     <main class="content">
+        <!-- Card-style wrapper; .post gives coloured background, padding, rounded corners. -->
         <section class="post">
-            <h1>CONTACT</h1>
-            <p class="meta"></p>
+            <h1>CONTACT</h1>            <!-- Heading styled by .post h1 (colour, spacing) -->
+
+            <p class="meta"></p>        <!-- Optional small meta text (empty for now) -->
+            <!-- Main contact text.
+                 The .about class uses white-space: pre-line and centering in your CSS,
+                 so the message is easy to read and nicely formatted. -->
             <div class="about">
                 <p>
                     I'd love to hear from you!
                     Please reach out via email to ...@gmail.com
                 </p>
-            </div>
-                <p>
-                    <a class="primary-button" href="index.html">View Home</a>
-                </p>
-
-        </section>
-    </main>
-
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const sideNav = document.getElementById('sideNav');
-
-        // toggle on hamburger click
-        hamburger.addEventListener('click', (event) => {
-            event.stopPropagation();
-            sideNav.classList.toggle('open');
-        });
-
-        // click on side-nav background closes it, links keep working
-        sideNav.addEventListener('click', (event) => {
-            // if you clicked directly on the aside (the blank area)
-            if (event.target === sideNav) {
-                sideNav.classList.remove('open');
-            }
-            // clicks on links bubble up and will still navigate
-            event.stopPropagation();
-        });
-
-        // click anywhere else closes nav
-        document.addEventListener('click', () => {
-            sideNav.classList.remove('open');
-        });
-    </script>
-
-</body>
-</html>
