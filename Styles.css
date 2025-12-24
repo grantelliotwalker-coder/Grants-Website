@@ -214,12 +214,16 @@ body { /* Body of the page (all visible content) */
     }
 
     .hamburger {
-        margin-top: 0;
+        width: 24px; /* a bit narrower */
+        height: 18px; /* keeps the three lines tight */
+        margin: 0; /* no extra vertical offset */
     }
 
     /* New: bigger text and controls on mobile */
     .logo { /* Logo text on small screens */
-        font-size: 2.2rem; /* Slightly smaller than desktop logo for fit */
+        font-size: 2.1rem; /* Slightly smaller than desktop logo for fit */
+        white-space: nowrap; /* keep SIMPLY HEALTH on one line */
+        margin-right: 1rem; /* gap before hamburger */
     }
 
     .side-nav a { /* Side nav links on small screens */
