@@ -88,6 +88,7 @@ body { /* Body of the page (all visible content) */
     border: none; /* Removes default button border */
     padding: 0; /* Removes default button padding */
     cursor: pointer; /* Shows pointer cursor when hovering */
+    margin-top: 2px; /* tweak up/down until it looks right on phone */
 }
 
 
@@ -207,6 +208,12 @@ body { /* Body of the page (all visible content) */
 
     .top-bar .hamburger span { /* Hamburger lines specifically at small sizes */
         background-color: #000000 !important; /* Forces black color, overriding other styles */
+        padding-top: 1.5rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .hamburger {
+        margin-top: 0;
     }
 
     /* New: bigger text and controls on mobile */
