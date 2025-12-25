@@ -1,14 +1,15 @@
 ﻿/* Theme variables */ /* Section comment describing what this block is for */
 
 :root { /* :root = top-level element; good place to store global variables */
-    --bg: #EAE0D5; /* page background */ /* Custom property for overall page background color */
-    --surface: #F7A399; /* cards / posts */ /* Color for card/post backgrounds */
+    --bg: #000000; /* page background */ /* Custom property for overall page background color */
+    --surface: #694D75; /* cards / posts */ /* Color for card/post backgrounds */
     --text: #FFFFFF; /* main text */ /* Main text color if you want light text */
     --muted: #FFFFFF; /* meta text */ /* Lighter text color for meta/info text */
+    --white: #FFFFFF; /* meta text */ /* Lighter text color for meta/info text */
     --accent: #000000; /* , logo, active link */ /* Accent color, used for important text/links */
     --black: #000000; /*/Black*/ /* Plain black color, stored as a variable */
     --logo: #000000; /* , logo, active link */ /* Color used specifically for the logo text */
-    --button: #fb3741; /* buttons, logo, active link */ /* Main button background color */
+    --button: #9877A6; /* buttons, logo, active link */ /* Main button background color */
     --accent-soft: #e71d36; /* hover color */ /* Slightly different red for hover states */
     --header: #d1e5ed; /* top bar + side nav */ /* Color intended for header/side nav if needed */
 }
@@ -24,7 +25,7 @@ body { /* Body of the page (all visible content) */
     font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     /* Sets the default font stack for all text */
     background-color: var(--bg); /* Uses bg variable as page background color */
-    color: var(--black); /* Sets default text color to black */
+    color: var(--white); /* Sets default text color to black */
     font-size: 1rem; /* Body text size = 1 × root size (18px) */
 }
 
@@ -51,30 +52,30 @@ body { /* Body of the page (all visible content) */
     justify-content: center; /* centre links inside that space */ /* Centers the links horizontally */
 }
 
-.logo { /* Styles for the SIMPLY HEALTH logo link */
+.logo { /* Styles for the GRANT WALKER logo link */
     font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     /* Uses Roboto (or fallbacks) for logo text */
     font-weight: 500; /* Medium */ /* Medium font weight (overridden by bold below) */
     font-size: 2.5rem; /* Large font size for the logo */
     font-weight: bold; /* Makes logo text bold */
-    color: var(--logo); /* Uses logo color variable (black) */
+    color: var(--white); /* Uses logo color variable (black) */
     text-decoration: none; /* Removes underline from the logo link */
     margin-right: 1rem; /* NEW: gap between logo and nav/hamburger */
 }
 
 .top-nav a { /* Styles for each top navigation link */
-    color: var(--black); /* Link text color set to black */
+    color: var(--white); /* Link text color set to black */
     text-decoration: none; /* Removes default underline */
     margin-left: 1rem; /* Adds space between each nav link */
     font-size: 0.95rem; /* Slightly smaller than base font size */
 }
 
     .top-nav a[aria-current="page"] { /* Style for the link representing current page */
-        color: var(--accent); /* Uses accent color to highlight current page link */
+        color: var(--white); /* Uses accent color to highlight current page link */
     }
 
     .top-nav a:hover { /* Hover state for nav links */
-        color: var(--accent); /* Changes color on hover for feedback */
+        color: var(--white); /* Changes color on hover for feedback */
     }
 
 /* Hamburger button (for small screens) */
@@ -99,7 +100,7 @@ body { /* Body of the page (all visible content) */
     display: block;
     width: 100%;
     height: 3px;
-    background-color: #000000;
+    background-color: var(--white);
     border-radius: 2px;
 }
 
@@ -174,7 +175,7 @@ body { /* Body of the page (all visible content) */
     .side-nav a { /* Individual links inside the side nav */
         display: block; /* Each link takes the full width of the drawer */
         padding: 0.75rem 1.25rem; /* Vertical and horizontal padding around link text */
-        color: var(--black); /* Side nav link text color */
+        color: var(--white); /* Side nav link text color */
         text-decoration: none; /* Removes link underlines */
         font-size: 0.95rem; /* Slightly smaller than base font size */
     }
@@ -217,7 +218,7 @@ body { /* Body of the page (all visible content) */
     /* keep logo on one line and a bit smaller */
     .logo {
         font-size: 2rem; /* smaller so it fits */
-        white-space: nowrap; /* don't wrap SIMPLY HEALTH */
+        white-space: nowrap; /* don't wrap GRANT WALKER */
         margin-right: 1rem; /* gap before hamburger */
     }
 
@@ -238,7 +239,7 @@ body { /* Body of the page (all visible content) */
     .top-bar .hamburger span {
         width: 100%;
         height: 3px;
-        background-color: #000000 !important;
+        background-color: #FFFFFF !important;
         border-radius: 2px;
     }
 
