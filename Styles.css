@@ -198,6 +198,15 @@ body { /* Body of the page (all visible content) */
     /* or: white-space: pre-wrap;  // keeps all spaces too */ /* Alternative setting commented out */
 }
 
+.post img.post-cover {
+    width: 100%;
+    max-width: 350px;
+    display: block;
+    margin: 0 auto 1rem;
+    border-radius: 8px;
+}
+
+
 /* Responsive */ /* Section for responsive (small screen) styles */
 
 /* Responsive */

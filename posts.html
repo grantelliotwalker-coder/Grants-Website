@@ -72,17 +72,30 @@
     <main class="content">
 
         <!-- One blog post “card”.
-             .post applies the card background, padding, border radius, centering, etc. -->
+         .post applies the card background, padding, border radius, centering, etc. -->
         <article class="post">
-            <!-- Post title; .post h1 and .post h1 a control size, colour, and remove underline -->
-            <h1><a href="#">First post</a></h1>
+            <!-- Clickable album cover -->
+            <a href="https://open.spotify.com/album/2Fn9i9Jtky5h04fylEMEsD?si=YRn1FjWHQl60crEss1-6mQ"
+               target="_blank"
+               rel="noopener noreferrer">
+                <img src="images/ColourBlind.jpg"
+                     alt="Album cover for My Album"
+                     class="post-cover" />
+            </a>
 
-            <!-- Meta info line under the heading; styled by .meta (smaller, muted text) -->
+            <!-- Clickable title going to the same album -->
+            <h1>
+                <a href="https://open.spotify.com/album/2Fn9i9Jtky5h04fylEMEsD?si=YRn1FjWHQl60crEss1-6mQ"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    First post
+                </a>
+            </h1>
+
             <p class="meta">Published today by You</p>
-
-            <!-- Short intro paragraph for the post body, using normal body font styling -->
-            <p>Short intro to your first post. Click the title to read more.</p>
+            <p>Short intro to your first post. Click the cover or title to listen on Spotify.</p>
         </article>
+
 
         <!-- Second example post card, using the same .post and .meta styles -->
         <article class="post">
