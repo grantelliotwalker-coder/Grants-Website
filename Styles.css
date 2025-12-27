@@ -20,14 +20,20 @@ html { /* Root HTML element */
     font-size: 18px; /* try 18–20px; 1rem = 18px now */ /* Sets base font size so 1rem = 18px */
 }
 
-body { /* Body of the page (all visible content) */
-    margin: 0; /* Removes default browser margin around the page */
+body {
+    margin: 0;
     font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    /* Sets the default font stack for all text */
-    background-color: var(--bg); /* Uses bg variable as page background color */
-    color: var(--white); /* Sets default text color to black */
-    font-size: 1rem; /* Body text size = 1 × root size (18px) */
+    background-color: var(--bg);
+    color: var(--white);
+    font-size: 1rem;
+    min-height: 100vh; /* full viewport height */
+    display: flex; /* stack header, main, footer vertically */
+    flex-direction: column;
 }
+main.content {
+    flex: 1; /* push footer to the bottom */
+}
+
 
 
 /* Top bar */ /* Section for the header/navigation bar */
@@ -205,6 +211,23 @@ body { /* Body of the page (all visible content) */
     margin: 0 auto 1rem;
     border-radius: 8px;
 }
+
+.site-footer {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg);
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid #2a3a4a;
+    line-height: 1.2;
+}
+
+    .site-footer p {
+        margin: 0;
+    }
+
+
+
 
 
 /* Responsive */ /* Section for responsive (small screen) styles */
