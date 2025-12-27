@@ -10,7 +10,7 @@
     --black: #000000; /*/Black*/ /* Plain black color, stored as a variable */
     --logo: #000000; /* , logo, active link */ /* Color used specifically for the logo text */
     --button: #9877A6; /* buttons, logo, active link */ /* Main button background color */
-    --accent-soft: #e71d36; /* hover color */ /* Slightly different red for hover states */
+    --accent-soft: #B49CBF; /* hover color */ /* Slightly different red for hover states */
     --header: #d1e5ed; /* top bar + side nav */ /* Color intended for header/side nav if needed */
 }
 
