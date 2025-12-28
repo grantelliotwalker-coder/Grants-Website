@@ -35,25 +35,22 @@
     <!-- ===== Header / top navigation ===== -->
     <!-- Entire top bar: layout, spacing, colours come from .top-bar in Styles.css -->
     <header class="top-bar">
-        <!-- Logo link; styled by .logo (font, size, colour, no underline) -->
-        <a href="Home.html" class="logo">GRANT WALKER</a>
+        <div class="top-bar-left">
+            <a href="Home.html" class="logo">GRANT WALKER</a>
+            <p class="tagline">Music Producer from Australia</p>
+        </div>
 
-        <!-- Horizontal navigation bar; .top-nav and .top-nav a control layout and link styles.
-             On small screens, .top-nav is hidden by the @media rules and the hamburger is used instead. -->
         <nav class="top-nav">
-            <a href="Home.html">Home</a>                     <!-- Normal link -->
-            <a href="posts.html" aria-current="page">Music</a><!-- Marked as current page; CSS highlights it -->
+            <a href="Home.html" aria-current="page">Home</a>
+            <a href="posts.html">Music</a>
             <a href="About.html">About</a>
             <a href="Contact.html">Contact</a>
         </nav>
 
-        <!-- Hamburger menu icon for mobile.
-             The .hamburger class and .top-bar .hamburger span styles turn these three spans into lines.
-             JavaScript below toggles the side nav when this button is clicked. -->
         <button class="hamburger" id="hamburger">
-            <span></span>  <!-- Top line -->
-            <span></span>  <!-- Middle line -->
-            <span></span>  <!-- Bottom line -->
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
     </header>
 
@@ -94,8 +91,8 @@
 
             <p class="meta">Release Date - 3 Sep 2018</p>
             <div class="about">
-                    My debut album Colour Blind was recorded in Brisbane Australia
-                    Click the cover or title to listen on Spotify.
+                My debut album Colour Blind was recorded in Brisbane Australia
+                Click the cover or title to listen on Spotify.
             </div>
         </article>
 

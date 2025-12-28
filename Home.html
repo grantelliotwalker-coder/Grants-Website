@@ -33,11 +33,11 @@
     <!-- Everything inside <body> is styled by your CSS and shown on screen [web:83][web:90] -->
     <!-- Top bar: styled by .top-bar, .logo, .top-nav, .hamburger in Styles.css ggh-->
     <header class="top-bar">
-        <!-- Logo text; CSS .logo controls font, size, colour, no underline -->
-        <a href="Home.html" class="logo">GRANT WALKER</a>
+        <div class="top-bar-left">
+            <a href="Home.html" class="logo">GRANT WALKER</a>
+            <p class="tagline">Music Producer from Australia</p>
+        </div>
 
-        <!-- Horizontal navigation; CSS .top-nav and .top-nav a style layout and links.
-             Hidden on small screens by @media, where the hamburger + side-nav take over. -->
         <nav class="top-nav">
             <a href="Home.html" aria-current="page">Home</a>
             <a href="posts.html">Music</a>
@@ -45,15 +45,15 @@
             <a href="Contact.html">Contact</a>
         </nav>
 
-        <!-- Hamburger menu button.
-             CSS .hamburger and .top-bar .hamburger span create the three-line icon.
-             JavaScript below toggles the .side-nav.open class when this is clicked. -->
         <button class="hamburger" id="hamburger">
-            <span></span>  <!-- First line -->
-            <span></span>  <!-- Second line -->
-            <span></span>  <!-- Third line -->
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
     </header>
+
+
+
 
     <!-- Slide‑out side navigation drawer.
          CSS .side-nav positions it off-screen; .side-nav.open slides it in. [web:89][web:92] -->
@@ -66,23 +66,19 @@
 
     <!-- Main content area, centered by .content in Styles.css -->
     <main class="content">
-        <!-- Card/hero block, styled by .post and .post h1 -->
-        <section class="post">
-            <h1>HOME</h1>  <!-- Big heading; colour/size from .post h1 -->
-            <p class="meta"></p>         <!-- Reserved for small meta text (date, etc.); styled by .meta -->
-            <div class="about">
-                Welcome to the landing page for music producer Grant Walker
-
-                Click the button below to explore his Discography
-
+        <section class="hero">
+            <div class="hero-inner">
+                <h1>Grant Walker</h1>
+                <p class="hero-subtitle">
+                    Music Producer and Instrumentalist from Australia.
+                </p>
+                <p>
+                    <a class="primary-button" href="posts.html">View Discography</a>
+                </p>
             </div>
-            <p>
-                <!-- Main call‑to‑action button.
-             .primary-button gives it red background, padding, hover effect. -->
-                <a class="primary-button" href="posts.html">View Discography</a>
-            </p>
         </section>
     </main>
+
 
     <!-- JavaScript to control hamburger and side nav behaviour -->
     <script>

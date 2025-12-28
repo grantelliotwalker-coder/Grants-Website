@@ -31,24 +31,22 @@
     <!-- ===== Header / top navigation bar ===== -->
     <!-- Top bar layout; spacing and colours handled by .top-bar in Styles.css -->
     <header class="top-bar">
-        <!-- Site logo; .logo controls font family (Roboto), size, colour, and removes underline -->
-        <a href="Home.html" class="logo">GRANT WALKER</a>
+        <div class="top-bar-left">
+            <a href="Home.html" class="logo">GRANT WALKER</a>
+            <p class="tagline">Music Producer from Australia</p>
+        </div>
 
-        <!-- Horizontal nav menu; .top-nav and .top-nav a style this area.
-             Here “About” is marked as the current page. -->
         <nav class="top-nav">
-            <a href="Home.html">Home</a>
+            <a href="Home.html" aria-current="page">Home</a>
             <a href="posts.html">Music</a>
-            <a href="About.html" aria-current="page">About</a> <!-- Highlighted as current page -->
+            <a href="About.html">About</a>
             <a href="Contact.html">Contact</a>
         </nav>
 
-        <!-- Hamburger icon for small screens.
-             The .hamburger and .top-bar .hamburger span rules draw the three lines. -->
         <button class="hamburger" id="hamburger">
-            <span></span>  <!-- Top line -->
-            <span></span>  <!-- Middle line -->
-            <span></span>  <!-- Bottom line -->
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
     </header>
 

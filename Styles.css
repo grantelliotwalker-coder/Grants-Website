@@ -30,10 +30,30 @@ body {
     display: flex; /* stack header, main, footer vertically */
     flex-direction: column;
 }
+/* make main wrapper not constrain hero */
 main.content {
-    flex: 1; /* push footer to the bottom */
+    flex: 1;
+    max-width: none; /* override the 900px limit for the hero page */
+    margin: 0; /* remove side margins */
+    padding: 0;
 }
 
+.hero {
+    position: relative;
+    padding: 6rem 1.5rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #ffffff;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.85)), url("Images/Hero.jpg") center 30% / cover no-repeat;
+}
+
+/* keep text from getting too wide */
+.hero-inner {
+    max-width: 640px;
+    margin: 0 1.5rem;
+}
 
 
 /* Top bar */ /* Section for the header/navigation bar */
@@ -226,7 +246,17 @@ main.content {
         margin: 0;
     }
 
+.top-bar-left {
+    display: flex;
+    flex-direction: column; /* stack logo and tagline vertically */
+    gap: 0.15rem; /* small space between them */
+}
 
+.tagline {
+    font-size: 0.8rem;
+    opacity: 0.75;
+    margin: 0;
+}
 
 
 
