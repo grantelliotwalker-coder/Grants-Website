@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Launcher</title>
+<style>
+  /* ============================================================
+     EASY CUSTOMISATION
+     - Set enabled: true/false to show/hide a button
+     - Set label to what appears on the button
+     - Set url to where it should navigate
+  ============================================================ */
+
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap');
+
+  :root {
+    --bg:        #0a0a0a;
+    --surface:   #111111;
+    --border:    rgba(255,255,255,0.07);
+    --blue-a:    #3b82f6;
+    --blue-b:    #6366f1;
+    --blue-c:    #06b6d4;
+    --text:      #f1f5f9;
+    --muted:     #64748b;
+    --btn-h:     52px;
+    --cols:      2;
+    --gap:       10px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding: env(safe-area-inset-top, 12px) env(safe-area-inset-right, 16px) env(safe-area-inset-bottom, 16px) env(safe-area-inset-left, 16px);
+    padding-top: max(env(safe-area-inset-top), 16px);
+  }
+
+  header {
+    padding: 8px 4px 14px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  header h1 {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  header span {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue-a);
+    box-shadow: 0 0 8px var(--blue-a);
+    display: inline-block;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.3; }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    gap: var(--gap);
+    flex: 1;
+    align-content: start;
+  }
+
+  /* ── BUTTON BASE ── */
+  .btn {
+    display: none; /* hidden by default — set enabled:true to show */
+    position: relative;
+    height: var(--btn-h);
+    border: none;
+    border-radius: 14px;
+    cursor: pointer;
+    overflow: hidden;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.01em;
+    background: linear-gradient(135deg, var(--blue-a), var(--blue-b));
+    box-shadow:
+      0 0 0 1px rgba(99,102,241,0.3),
+      0 4px 16px rgba(59,130,246,0.25),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .btn.enabled {
+    display: flex; /* shown when enabled */
+  }
+
+  /* shine overlay */
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  /* subtle animated gradient shimmer */
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.06) 50%, transparent 100%);
+    border-radius: inherit;
+    transform: translateX(-100%);
+    transition: transform 0s;
+  }
+
+  .btn:hover::after { transform: translateX(100%); transition: transform 0.45s ease; }
+
+  .btn:active {
+    transform: scale(0.96);
+    filter: brightness(1.15);
+    box-shadow:
+      0 0 0 1px rgba(99,102,241,0.5),
+      0 2px 8px rgba(59,130,246,0.4),
+      inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+
+  /* colour variants — alternate so the grid looks varied */
+  .btn:nth-child(3n+1) { background: linear-gradient(135deg, #3b82f6, #6366f1); }
+  .btn:nth-child(3n+2) { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+  .btn:nth-child(3n)   { background: linear-gradient(135deg, #06b6d4, #3b82f6); }
+
+  /* wide button — spans both columns */
+  .btn.wide { grid-column: 1 / -1; }
+
+  .btn-label {
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 90%;
+    text-align: center;
+  }
+
+  footer {
+    padding: 10px 4px 2px;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: #2a2a2a;
+    letter-spacing: 0.08em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <span></span>
+  <h1>Launcher</h1>
+</header>
+
+<!-- ============================================================
+     BUTTONS — edit these to customise your launcher
+     
+     To show a button:     add class "enabled"
+     To make it full-width: add class "wide"
+     Set href=""           to the URL you want
+     Edit the text inside  <span class="btn-label"> for the label
+     
+     Examples:
+       <a class="btn enabled" href="https://example.com">
+       <a class="btn enabled wide" href="https://example.com">
+============================================================ -->
+
+<div class="grid">
+
+  <!-- Button 1 -->
+  <a class="btn enabled" href="https://grantelliotwalker-coder.github.io/Reminders/">
+    <span class="btn-label">Reminders App</span>
+  </a>
+
+  <!-- Button 2 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 2</span>
+  </a>
+
+  <!-- Button 3 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 3</span>
+  </a>
+
+  <!-- Button 4 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 4</span>
+  </a>
+
+  <!-- Button 5 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 5</span>
+  </a>
+
+  <!-- Button 6 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 6</span>
+  </a>
+
+  <!-- Button 7 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 7</span>
+  </a>
+
+  <!-- Button 8 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 8</span>
+  </a>
+
+  <!-- Button 9 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 9</span>
+  </a>
+
+  <!-- Button 10 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 10</span>
+  </a>
+
+  <!-- Button 11 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 11</span>
+  </a>
+
+  <!-- Button 12 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 12</span>
+  </a>
+
+  <!-- Button 13 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 13</span>
+  </a>
+
+  <!-- Button 14 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 14</span>
+  </a>
+
+  <!-- Button 15 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 15</span>
+  </a>
+
+  <!-- Button 16 -->
+  <a class="btn" href="">
+    <span class="btn-label">Button 16</span>
+  </a>
+
+</div>
+
+<footer>launcher · edit html to configure</footer>
+
+</body>
+</html>
