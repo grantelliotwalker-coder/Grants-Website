@@ -33,8 +33,8 @@
       --display: "Fraunces", Georgia, serif;
       --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-      --wrap: 1120px;
-      --gutter: clamp(16px, 4vw, 40px);
+      --wrap: 100%;
+      --gutter: clamp(16px, 5vw, 96px);
       --header-h: 76px;
       --radius: 14px;
     }
@@ -218,7 +218,7 @@
     /* Feature release block */
     .section { padding: clamp(4rem, 10vw, 7rem) 0; }
     .feature {
-      display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center;
+      display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: clamp(2rem, 6vw, 7rem); align-items: center;
     }
     .cover-wrap { position: relative; }
     .cover-wrap img {
@@ -232,6 +232,7 @@
     .meta-row { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
     .meta-row li { font-size: .82rem; font-weight: 500; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
     .feature p { color: var(--muted); margin: 0 0 1.75rem; max-width: 46ch; }
+    .feature > div:last-child { max-width: 720px; }
 
     /* ---------- MUSIC ---------- */
     .music-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 1.5rem; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
@@ -255,8 +256,8 @@
     .sub-head a:hover { color: var(--cream); }
 
     /* ---------- ABOUT ---------- */
-    .about-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
-    .about-photo { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; background: #e9e4dc; }
+    .about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+    .about-photo { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; max-height: 78vh; width: 100%; background: #e9e4dc; }
     .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; }
     .about-photo figcaption {
       position: absolute; left: 1rem; bottom: 1rem; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
