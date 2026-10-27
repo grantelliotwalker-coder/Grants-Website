@@ -265,10 +265,43 @@
 
     .embed { border-radius: 12px; overflow: hidden; background: var(--bg-2); border: 0; width: 100%; display: block; }
 
-    .sub-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: clamp(3rem, 8vw, 5rem) 0 1.25rem; }
+    .sub-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem; margin: clamp(3rem, 8vw, 5rem) 0 1.25rem; }
     .sub-head h3 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 700; }
     .sub-head a { font-size: .9rem; color: var(--muted); }
     .sub-head a:hover { color: var(--cream); }
+
+    .sub-head h3 .count { font-family: var(--body); font-size: .9rem; font-weight: 500; color: var(--muted); margin-left: .35rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .chip {
+      font: inherit; font-size: .85rem; font-weight: 500; color: var(--muted); background: transparent;
+      border: 1px solid var(--line); border-radius: 999px; padding: .4rem .9rem; cursor: pointer; transition: all .2s;
+    }
+    .chip:hover { color: var(--cream); border-color: rgba(243,233,215,.35); }
+    .chip[aria-pressed="true"] { background: var(--cream); color: var(--bg); border-color: var(--cream); }
+    .release-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: clamp(1rem, 2.5vw, 2rem); }
+    .rcard { display: flex; flex-direction: column; animation: viewIn .4s ease both; }
+    .rcard[hidden] { display: none; }
+    .rcard-cover { position: relative; display: block; border-radius: 8px; overflow: hidden; aspect-ratio: 1; background: var(--bg-2); }
+    .rcard-cover img, .release-cover img, .cover-wrap img { color: transparent; }
+    .rcard-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s cubic-bezier(.2,.7,.2,1), filter .3s; }
+    .rcard-cover::after {
+      content: ""; position: absolute; right: .75rem; bottom: .75rem; width: 48px; height: 48px; border-radius: 50%;
+      background: var(--spotify) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2306200f' d='M8 5v14l11-7z'/%3E%3C/svg%3E") 55% 50% / 22px no-repeat;
+      box-shadow: 0 8px 20px rgba(0,0,0,.45); opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s;
+    }
+    .rcard-cover:hover img { transform: scale(1.04); }
+    .rcard-cover:hover::after, .rcard-cover:focus-visible::after { opacity: 1; transform: none; }
+    .rcard-type { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--olive); margin: .9rem 0 .25rem; }
+    .rcard h4 { font-family: var(--display); font-variation-settings: "SOFT" 100; font-size: 1.3rem; font-weight: 700; line-height: 1.15; margin: 0 0 .2rem; }
+    .rcard-date { font-size: .85rem; color: var(--muted); margin: 0 0 .75rem; }
+    .rcard-links { display: flex; gap: .4rem; margin-top: auto; }
+    .rcard-links a {
+      font-size: .8rem; font-weight: 600; text-decoration: none; padding: .35rem .75rem; border-radius: 999px;
+      border: 1px solid var(--line); color: var(--muted); transition: all .2s;
+    }
+    .rcard-links a:hover { color: var(--cream); border-color: rgba(243,233,215,.4); }
+    .rcard-links a.sp:hover { background: var(--spotify); color: #06200f; border-color: var(--spotify); }
+    .rcard-links a.am:hover { background: #fa2d48; color: #fff; border-color: #fa2d48; }
 
     /* ---------- ABOUT ---------- */
     .about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
@@ -338,6 +371,9 @@
       .about-photo { aspect-ratio: 4 / 3; }
     }
     @media (max-width: 480px) {
+      .release-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem 0.75rem; }
+      .rcard h4 { font-size: 1.05rem; }
+      .rcard-links a { padding: .3rem .6rem; font-size: .75rem; }
       .facts { grid-template-columns: minmax(0, 1fr); }
       .btn-row .btn { flex: 1 1 auto; justify-content: center; }
     }
@@ -417,9 +453,9 @@
 
       <div class="ticker" aria-hidden="true">
         <div class="ticker-track">
-          <span>Colour Blind</span><span>Spotify · Apple Music · YouTube</span><span>Recorded in Brisbane</span>
+          <span>Moonlight Beams</span><span>New album out now</span><span>Spotify · Apple Music · YouTube</span>
           <span>Producer</span><span>Instrumentalist</span><span>Australia</span>
-          <span>Colour Blind</span><span>Spotify · Apple Music · YouTube</span><span>Recorded in Brisbane</span>
+          <span>Moonlight Beams</span><span>New album out now</span><span>Spotify · Apple Music · YouTube</span>
           <span>Producer</span><span>Instrumentalist</span><span>Australia</span>
         </div>
       </div>
@@ -428,21 +464,25 @@
         <div class="wrap feature">
           <div class="cover-wrap">
             <div class="dots" data-dots="42"></div>
-            <a href="https://open.spotify.com/album/2Fn9i9Jtky5h04fylEMEsD" target="_blank" rel="noopener">
-              <img src="Images/ColourBlind.jpg" alt="Colour Blind album cover" width="625" height="625" loading="lazy" />
+            <a href="https://open.spotify.com/search/Grant%20Walker%20Moonlight%20Beams" target="_blank" rel="noopener">
+              <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/61/72/50/6172502e-4e56-3b87-6338-d8b92669889c/199800657511.jpg/600x600bb.jpg" alt="Moonlight Beams album cover" width="600" height="600" loading="lazy" />
             </a>
           </div>
           <div>
-            <p class="eyebrow">Debut album</p>
-            <h2>Colour Blind</h2>
+            <p class="eyebrow">Latest release</p>
+            <h2>Moonlight Beams</h2>
             <ul class="meta-row">
-              <li>Album</li><li>3 Sep 2018</li><li>Brisbane, AU</li>
+              <li>Album</li><li>23 Oct 2025</li><li>10 tracks</li>
             </ul>
-            <p>The debut record, recorded in Brisbane, Australia. Press play below or open it in Spotify.</p>
-            <iframe class="embed" title="Colour Blind on Spotify" style="margin-bottom:1.5rem"
-              src="https://open.spotify.com/embed/album/2Fn9i9Jtky5h04fylEMEsD?utm_source=generator&theme=0"
+            <p>My newest album, out now. Press play below for my most popular tracks, or open the album in your app.</p>
+            <iframe class="embed" title="Grant Walker on Spotify" style="margin-bottom:1.5rem"
+              src="https://open.spotify.com/embed/artist/7KByrO3hI6aLm87fbhaWxL?utm_source=generator&theme=0"
               height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <a class="btn btn-ghost" href="#music" data-view-link>Full discography →</a>
+            <div class="btn-row">
+              <a class="btn btn-spotify" href="https://open.spotify.com/search/Grant%20Walker%20Moonlight%20Beams" target="_blank" rel="noopener">Spotify</a>
+              <a class="btn btn-apple" href="https://music.apple.com/album/moonlight-beams/1841037687" target="_blank" rel="noopener">Apple Music</a>
+              <a class="btn btn-ghost" href="#music" data-view-link>All releases →</a>
+            </div>
           </div>
         </div>
       </div>
@@ -450,8 +490,8 @@
 
     <!-- =====================================================
          VIEW: MUSIC
-         To add a new release: copy the <article class="release"> block
-         and change the cover, title, date, and Spotify link.
+         To add a new release: add it to the RELEASES list in the script at the bottom.
+         (newest first). The featured album is the block just below.
          ===================================================== -->
     <section class="view" id="view-music" data-title="Music — Grant Walker">
       <div class="wrap page-top">
@@ -459,7 +499,7 @@
           <div>
             <p class="eyebrow">Discography</p>
             <h1 class="page-title">The <em>music</em></h1>
-            <p class="lede">Every release, straight from Spotify. Hit play, or open it in the app.</p>
+            <p class="lede">Every album, EP and single. Tap a cover to play it on Spotify.</p>
           </div>
           <div class="btn-row">
             <a class="btn btn-spotify" href="https://open.spotify.com/artist/7KByrO3hI6aLm87fbhaWxL" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm5.5 17.3a.75.75 0 0 1-1 .25c-2.85-1.74-6.45-2.14-10.68-1.17a.75.75 0 1 1-.33-1.46c4.63-1.06 8.6-.6 11.770 1.34.36.21.47.68.25 1.04Zm1.47-3.27a.94.94 0 0 1-1.29.31c-3.26-2-8.230-2.59-12.09-1.42a.94.94 0 1 1-.54-1.8c4.4-1.33 9.88-.68 13.6 1.6.44.27.58.85.32 1.3Zm.13-3.4C15.2 8.3 8.8 8.1 5.1 9.2a1.13 1.13 0 1 1-.65-2.16c4.25-1.29 11.3-1.04 15.76 1.6a1.13 1.13 0 0 1-1.15 1.95Z"/></svg> Spotify</a>
@@ -468,20 +508,36 @@
           </div>
         </div>
 
+        <!-- Featured: latest album -->
         <article class="release">
-          <a class="release-cover" href="https://open.spotify.com/album/2Fn9i9Jtky5h04fylEMEsD" target="_blank" rel="noopener">
-            <img src="Images/ColourBlind.jpg" alt="Colour Blind album cover" width="625" height="625" loading="lazy" />
+          <a class="release-cover" href="https://open.spotify.com/search/Grant%20Walker%20Moonlight%20Beams" target="_blank" rel="noopener">
+            <img src="https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/61/72/50/6172502e-4e56-3b87-6338-d8b92669889c/199800657511.jpg/600x600bb.jpg" alt="Moonlight Beams album cover" width="600" height="600" loading="lazy" />
           </a>
           <div class="release-info">
-            <span class="tag">Album · 2018</span>
-            <h2><a href="https://open.spotify.com/album/2Fn9i9Jtky5h04fylEMEsD" target="_blank" rel="noopener">Colour Blind</a></h2>
-            <ul class="meta-row"><li>Released 3 Sep 2018</li><li>Recorded in Brisbane</li></ul>
-            <p>My debut album, recorded in Brisbane, Australia.</p>
-            <iframe class="embed" title="Colour Blind tracklist on Spotify"
-              src="https://open.spotify.com/embed/album/2Fn9i9Jtky5h04fylEMEsD?utm_source=generator&theme=0"
-              height="352" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <span class="tag">Latest · Album · 2025</span>
+            <h2><a href="https://open.spotify.com/search/Grant%20Walker%20Moonlight%20Beams" target="_blank" rel="noopener">Moonlight Beams</a></h2>
+            <ul class="meta-row"><li>Released 23 Oct 2025</li><li>10 tracks</li><li>29 min</li></ul>
+            <div class="btn-row" style="margin-bottom:1.25rem">
+              <a class="btn btn-spotify btn-sm" href="https://open.spotify.com/search/Grant%20Walker%20Moonlight%20Beams" target="_blank" rel="noopener">Play on Spotify</a>
+              <a class="btn btn-apple btn-sm" href="https://music.apple.com/album/moonlight-beams/1841037687" target="_blank" rel="noopener">Play on Apple Music</a>
+            </div>
+            <iframe class="embed" title="Moonlight Beams tracklist"
+              src="https://embed.music.apple.com/au/album/moonlight-beams/1841037687?theme=dark"
+              height="450" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
           </div>
         </article>
+
+        <!-- Every release. Edit the RELEASES list in the script at the bottom to add new ones. -->
+        <div class="sub-head">
+          <h3>All releases <span class="count" id="releaseCount"></span></h3>
+          <div class="filters" role="group" aria-label="Filter releases">
+            <button type="button" class="chip" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="chip" data-filter="Album" aria-pressed="false">Albums</button>
+            <button type="button" class="chip" data-filter="EP" aria-pressed="false">EPs</button>
+            <button type="button" class="chip" data-filter="Single" aria-pressed="false">Singles</button>
+          </div>
+        </div>
+        <div class="release-grid" id="releaseGrid"></div>
 
         <div class="sub-head">
           <h3>Popular on Spotify</h3>
@@ -508,13 +564,13 @@
             <p class="eyebrow">About</p>
             <h1 class="page-title">Hi, I'm <em>Grant</em></h1>
             <p class="big">I'm a music producer and instrumentalist from Australia.</p>
-            <p>My debut album, <strong>Colour Blind</strong>, was recorded in Brisbane and released in September 2018. I write, play and produce my own records, chasing warm tones, real instruments and a bit of colour.</p>
+            <p>My debut album, <strong>Colour Blind</strong>, was recorded in Brisbane and released in 2018. Since then I've put out a run of singles, the <strong>Total Internal Reflection</strong> EP, and my latest album, <strong>Moonlight Beams</strong> (2025). I write, play and produce my own records, chasing warm tones, real instruments and a bit of colour.</p>
             <p>When I'm not in the studio I'm building things, including this website.</p>
 
             <dl class="facts">
               <div><dt>Based in</dt><dd>Australia</dd></div>
-              <div><dt>Debut</dt><dd>2018</dd></div>
-              <div><dt>Plays</dt><dd>Guitar &amp; more</dd></div>
+              <div><dt>Releases</dt><dd>9 &amp; counting</dd></div>
+              <div><dt>Latest</dt><dd>Moonlight Beams</dd></div>
             </dl>
 
             <div class="btn-row">
@@ -609,6 +665,51 @@
   </footer>
 
   <script>
+    /* ---------- Discography ----------
+       Newest first. To add a release, copy a line and change the details.
+       spotify: paste the album's Spotify link (Share → Copy link). If it's left as "",
+                the button searches Spotify for the title instead.
+       apple:   the Apple Music album ID (the number at the end of its link).
+       cover:   an image URL, or a file in Images/. */
+    const MZ = "https://is1-ssl.mzstatic.com/image/thumb/";
+    const RELEASES = [
+      { title: "Moonlight Beams",           type: "Album",  date: "2025-10-23", apple: "1841037687", spotify: "", cover: MZ + "Music221/v4/61/72/50/6172502e-4e56-3b87-6338-d8b92669889c/199800657511.jpg/600x600bb.jpg" },
+      { title: "Smooth Tailin'",            type: "Single", date: "2025-02-12", apple: "1789883589", spotify: "", cover: MZ + "Music221/v4/c6/a4/af/c6a4afd4-4e2f-d54c-4e62-6c18f7d3724d/198999799811.jpg/600x600bb.jpg" },
+      { title: "Albatross",                 type: "Single", date: "2024-07-06", apple: "1752701089", spotify: "", cover: MZ + "Music211/v4/71/d1/f0/71d1f0af-49d5-f084-4937-4dc544d5df97/198595140147.jpg/600x600bb.jpg" },
+      { title: "Understated",               type: "Single", date: "2024-01-30", apple: "1726067225", spotify: "", cover: MZ + "Music126/v4/aa/2f/02/aa2f0280-aae6-1899-dbf9-28edfbf83cef/198026913678.jpg/600x600bb.jpg" },
+      { title: "Total Internal Reflection", type: "EP",     date: "2023-06-26", apple: "1690297686", spotify: "", cover: MZ + "Music116/v4/a6/c0/81/a6c0815d-7c11-c24d-d3e6-1154425a849e/198025388873.jpg/600x600bb.jpg" },
+      { title: "Foxey Lady",                type: "Single", date: "2023-04-27", apple: "1685115679", spotify: "", cover: MZ + "Music116/v4/5e/b4/6b/5eb46b21-61ce-d70c-6006-25e76243ea13/198025174674.jpg/600x600bb.jpg" },
+      { title: "Mammatus",                  type: "Single", date: "2022-07-21", apple: "1632376778", spotify: "", cover: MZ + "Music122/v4/02/94/16/029416cb-6ea8-f342-675b-3bae61b9a50e/198003914391.jpg/600x600bb.jpg" },
+      { title: "Breaker",                   type: "Single", date: "2021-02-18", apple: "1550357212", spotify: "", cover: MZ + "Music124/v4/ee/db/32/eedb321d-bff7-1efb-ecf5-a4d8d35a80ea/195999378145.jpg/600x600bb.jpg" },
+      { title: "Colour Blind",              type: "Album",  date: "2018-09-03", apple: "1434143390", spotify: "https://open.spotify.com/album/2Fn9i9Jtky5h04fylEMEsD", cover: "Images/ColourBlind.jpg" }
+    ];
+
+    const esc = t => t.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const spotifyLink = r => r.spotify || "https://open.spotify.com/search/" + encodeURIComponent("Grant Walker " + r.title);
+    const fmtDate = d => new Date(d + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short", year: "numeric" });
+
+    const grid = document.getElementById("releaseGrid");
+    grid.innerHTML = RELEASES.map(r => `
+      <article class="rcard" data-type="${r.type}">
+        <a class="rcard-cover" href="${spotifyLink(r)}" target="_blank" rel="noopener" aria-label="Play ${esc(r.title)} on Spotify">
+          <img src="${r.cover}" alt="${esc(r.title)} cover" width="600" height="600" loading="lazy" />
+        </a>
+        <p class="rcard-type">${r.type} · ${r.date.slice(0, 4)}</p>
+        <h4>${esc(r.title)}</h4>
+        <p class="rcard-date">${fmtDate(r.date)}</p>
+        <div class="rcard-links">
+          <a class="sp" href="${spotifyLink(r)}" target="_blank" rel="noopener">Spotify</a>
+          <a class="am" href="https://music.apple.com/album/${r.apple}" target="_blank" rel="noopener">Apple Music</a>
+        </div>
+      </article>`).join("");
+    document.getElementById("releaseCount").textContent = RELEASES.length;
+
+    document.querySelectorAll(".chip").forEach(chip => chip.addEventListener("click", () => {
+      document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === chip)));
+      const f = chip.dataset.filter;
+      grid.querySelectorAll(".rcard").forEach(card => card.hidden = f !== "all" && card.dataset.type !== f);
+    }));
+
     /* ---------- Settings ---------- */
     const CONTACT_EMAIL = "grantelliotwalker@gmail.com";
     const VIEWS = ["home", "music", "about", "contact"];
