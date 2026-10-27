@@ -743,14 +743,22 @@
               (youtube.com/watch?v=THIS_PART  or  youtu.be/THIS_PART).
        title: whatever you want shown under the thumbnail. */
     const VIDEOS = [
-      // { id: "dQw4w9WgXcQ", title: "Moonlight Beams (Official Video)" },
+      { id: "KKwYjbohJ38", title: "I Got You" },
+      { id: "PG976g-Tevc", title: "Grant Walker on YouTube" },   // ← swap in the real title
+      { id: "0HaKI_o3Bgg", title: "Breaker" },
     ];
+
+    /* Your channel. While VIDEOS (above) is empty, the section shows a player for your
+       latest uploads automatically. Add videos to VIDEOS to switch to hand-picked ones. */
+    const YT_CHANNEL_ID = "UCDpBv_d8S-ZElg6AgOw4AQA";
 
     const ytWrap = document.getElementById("ytWrap");
     document.getElementById("videoCount").textContent = VIDEOS.length || "";
     if (!VIDEOS.length) {
-      ytWrap.innerHTML = `<div class="yt-empty"><p>Videos are on the way. In the meantime, the whole catalogue lives on YouTube.</p>
-        <a class="btn btn-youtube" href="https://www.youtube.com/@gwalkermusic" target="_blank" rel="noopener">Visit the channel</a></div>`;
+      const uploads = "UU" + YT_CHANNEL_ID.slice(2);   // a channel's uploads playlist
+      ytWrap.innerHTML = `<div class="yt-player"><iframe title="Grant Walker on YouTube"
+        src="https://www.youtube-nocookie.com/embed/videoseries?list=${uploads}&rel=0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>`;
     } else {
       ytWrap.innerHTML = `<div class="yt-player" id="ytPlayer"></div><div class="yt-grid" id="ytGrid"></div>`;
       const player = document.getElementById("ytPlayer"), ytGrid = document.getElementById("ytGrid");
