@@ -344,7 +344,7 @@
     /* ---------- ABOUT ---------- */
     .about-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
     .about-photo { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 4 / 5; max-height: 78vh; width: 100%; background: #e9e4dc; }
-    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
     .about-photo figcaption {
       position: absolute; left: 1rem; bottom: 1rem; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase;
       background: rgba(21,17,14,.75); padding: .35rem .7rem; border-radius: 999px; backdrop-filter: blur(6px);
@@ -360,8 +360,70 @@
     .facts dt { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
     .facts dd { margin: 0; font-family: var(--display); font-size: 1.25rem; font-weight: 700; }
 
+    /* ---------- PHOTOS SPREAD AROUND THE SITE ---------- */
+    [data-photo] { display: block; padding: 0; border: 0; background: var(--bg-2); cursor: zoom-in; overflow: hidden; border-radius: 10px; }
+    [data-photo] img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.7,.2,1), filter .3s; color: transparent; }
+    [data-photo]:hover img { transform: scale(1.03); filter: brightness(1.08); }
+    .studio-split { padding-top: 0; }
+    .split { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+    .split-photo { aspect-ratio: 3 / 2; border-radius: var(--radius); }
+    .split-title { font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 800; margin-bottom: 1.25rem; }
+    .split-title em { font-style: italic; font-weight: 400; color: var(--orange); }
+    .split p:not(.eyebrow) { color: var(--muted); margin: 0 0 1.75rem; max-width: 42ch; }
+    .photo-strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1.1rem); }
+    .photo-strip [data-photo] { aspect-ratio: 4 / 5; }
+    .photo-head {
+      position: relative; padding: clamp(2rem, 5vw, 4rem); border-radius: var(--radius); overflow: hidden; min-height: 380px; align-items: flex-end;
+      background: linear-gradient(90deg, rgba(21,17,14,.96) 0%, rgba(21,17,14,.8) 40%, rgba(21,17,14,.15) 70%), #111 url("Images/gallery/leopard-strat.jpg") 85% 40% / cover no-repeat;
+    }
+    .about-pair { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 4fr); gap: clamp(.75rem, 2vw, 1.5rem); margin-top: clamp(2rem, 6vw, 5rem); }
+    .about-pair [data-photo] { aspect-ratio: auto; height: clamp(260px, 38vw, 520px); }
+    .about-pair [data-photo]:first-child img { object-position: 50% 35%; }
+    .contact-photo { margin-top: 2rem; aspect-ratio: 3 / 2; width: 100%; border-radius: var(--radius); }
+    @media (max-width: 860px) {
+      .split { grid-template-columns: minmax(0, 1fr); }
+      .photo-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .photo-head { min-height: 0; padding-top: min(62vw, 300px); background: linear-gradient(0deg, rgba(21,17,14,1) 48%, rgba(21,17,14,.2) 78%, rgba(21,17,14,0) 100%), #111 url("Images/gallery/leopard-strat.jpg") 52% 0 / 175% auto no-repeat; }
+      .about-pair { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .about-pair [data-photo] { height: 240px; }
+    }
+
+    /* ---------- PHOTOS ---------- */
+    .gallery { columns: 3 300px; column-gap: clamp(.75rem, 1.6vw, 1.25rem); }
+    .g-item {
+      display: block; width: 100%; padding: 0; border: 0; background: var(--bg-2); cursor: zoom-in;
+      margin: 0 0 clamp(.75rem, 1.6vw, 1.25rem); border-radius: 10px; overflow: hidden; break-inside: avoid;
+      animation: viewIn .5s ease both;
+    }
+    .g-item img { width: 100%; height: auto; transition: transform .5s cubic-bezier(.2,.7,.2,1), filter .3s; color: transparent; }
+    .g-item:hover img { transform: scale(1.03); filter: brightness(1.08); }
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200; background: rgba(10, 8, 6, .97); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; padding: 4rem 4.5rem;
+      animation: viewIn .25s ease;
+    }
+    .lightbox[hidden] { display: none; }
+    .lb-figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: .75rem; max-width: 100%; max-height: 100%; }
+    .lb-figure img { max-width: 100%; max-height: calc(100vh - 9rem); max-height: calc(100dvh - 9rem); width: auto; height: auto; border-radius: 6px; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+    .lb-figure figcaption { font-size: .8rem; letter-spacing: .16em; color: var(--muted); }
+    .lb-btn {
+      position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 1px solid rgba(243,233,215,.25);
+      background: rgba(21,17,14,.6); color: var(--cream); font-size: 1.6rem; line-height: 1; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; transition: background .2s, color .2s;
+    }
+    .lb-btn:hover { background: var(--cream); color: var(--bg); }
+    .lb-close { top: 1rem; right: 1rem; font-size: 1.1rem; }
+    .lb-prev { left: 1rem; top: 50%; transform: translateY(-50%); }
+    .lb-next { right: 1rem; top: 50%; transform: translateY(-50%); }
+    @media (max-width: 860px) {
+      .gallery { columns: 2 150px; }
+      .lightbox { padding: 4rem .75rem 5.5rem; }
+      .lb-prev, .lb-next { top: auto; bottom: 1rem; transform: none; }
+      .lb-prev { left: calc(50% - 64px); } .lb-next { right: calc(50% - 64px); }
+    }
+
     /* ---------- CONTACT ---------- */
-    .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 5rem); }
+    .contact-grid { align-items: start; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(2rem, 6vw, 5rem); }
     .contact-links { list-style: none; margin: 2rem 0 0; padding: 0; border-top: 1px solid var(--line); }
     .contact-links a {
       display: flex; justify-content: space-between; align-items: center; gap: 1rem; text-decoration: none;
@@ -437,6 +499,7 @@
         <a href="#home" data-view-link>Home</a>
         <a href="#music" data-view-link>Music</a>
         <a href="#about" data-view-link>About</a>
+        <a href="#photos" data-view-link>Photos</a>
         <a href="#contact" data-view-link>Contact</a>
         <a class="btn btn-spotify btn-sm header-cta" href="https://open.spotify.com/artist/7KByrO3hI6aLm87fbhaWxL" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm5.5 17.3a.75.75 0 0 1-1 .25c-2.85-1.74-6.45-2.14-10.68-1.17a.75.75 0 1 1-.33-1.46c4.63-1.06 8.6-.6 11.77 1.34.36.21.47.68.25 1.04Zm1.47-3.27a.94.94 0 0 1-1.29.31c-3.26-2-8.23-2.59-12.09-1.42a.94.94 0 1 1-.54-1.8c4.4-1.33 9.88-.68 13.6 1.6.44.27.58.85.32 1.3Zm.13-3.4C15.2 8.3 8.8 8.1 5.1 9.2a1.13 1.13 0 1 1-.65-2.16c4.25-1.29 11.3-1.04 15.76 1.6a1.13 1.13 0 0 1-1.15 1.95Z"/></svg>
@@ -455,6 +518,7 @@
     <a class="nav-link" href="#home" data-view-link>Home</a>
     <a class="nav-link" href="#music" data-view-link>Music</a>
     <a class="nav-link" href="#about" data-view-link>About</a>
+    <a class="nav-link" href="#photos" data-view-link>Photos</a>
     <a class="nav-link" href="#contact" data-view-link>Contact</a>
     <div class="platforms no-label">
             <a href="https://open.spotify.com/artist/7KByrO3hI6aLm87fbhaWxL" target="_blank" rel="noopener" aria-label="Spotify" title="Spotify"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 1 0 0 24 12 12 0 0 0 0-24Zm5.5 17.3a.75.75 0 0 1-1 .25c-2.85-1.74-6.45-2.14-10.68-1.17a.75.75 0 1 1-.33-1.46c4.63-1.06 8.6-.6 11.770 1.34.36.21.47.68.25 1.04Zm1.47-3.27a.94.94 0 0 1-1.29.31c-3.26-2-8.230-2.59-12.09-1.42a.94.94 0 1 1-.54-1.8c4.4-1.33 9.88-.68 13.6 1.6.44.27.58.85.32 1.3Zm.13-3.4C15.2 8.3 8.8 8.1 5.1 9.2a1.13 1.13 0 1 1-.65-2.16c4.25-1.29 11.3-1.04 15.76 1.6a1.13 1.13 0 0 1-1.15 1.95Z"/></svg></a>
@@ -524,6 +588,35 @@
           </div>
         </div>
       </div>
+
+      <div class="section studio-split">
+        <div class="wrap split">
+          <button type="button" class="split-photo" data-photo="studio-desk" aria-label="View photo: Grant at the mixing desk">
+            <img src="Images/gallery/studio-desk.jpg" alt="Grant at the mixing desk in the studio" loading="lazy" />
+          </button>
+          <div>
+            <p class="eyebrow">In the studio</p>
+            <h2 class="split-title">Write. Play. <em>Produce.</em></h2>
+            <p>From the first riff to the final mix, I make my records myself: guitar, keys, vocals and production, chasing warm tones and real instruments.</p>
+            <a class="btn btn-ghost" href="#about" data-view-link>About me →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section" style="padding-top:0">
+        <div class="wrap">
+          <div class="sub-head" style="margin-top:0">
+            <h3>Photos</h3>
+            <a href="#photos" data-view-link>See all ↗</a>
+          </div>
+          <div class="photo-strip">
+            <button type="button" data-photo="live-colour" aria-label="View photo"><img src="Images/gallery/live-colour-sm.jpg" alt="Grant playing a Stratocaster at a mic" loading="lazy" /></button>
+            <button type="button" data-photo="red-shirt-vocals" aria-label="View photo"><img src="Images/gallery/red-shirt-vocals-sm.jpg" alt="Grant singing at a vintage microphone" loading="lazy" /></button>
+            <button type="button" data-photo="pink-light" aria-label="View photo"><img src="Images/gallery/pink-light-sm.jpg" alt="Grant playing guitar under pink lights" loading="lazy" /></button>
+            <button type="button" data-photo="grand-piano" aria-label="View photo"><img src="Images/gallery/grand-piano-sm.jpg" alt="Grant at a grand piano" loading="lazy" /></button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- =====================================================
@@ -533,7 +626,7 @@
          ===================================================== -->
     <section class="view" id="view-music" data-title="Music — Grant Walker">
       <div class="wrap page-top">
-        <div class="music-head">
+        <div class="music-head photo-head">
           <div>
             <p class="eyebrow">Discography</p>
             <h1 class="page-title">The <em>music</em></h1>
@@ -601,7 +694,7 @@
       <div class="wrap page-top">
         <div class="about-grid">
           <figure class="about-photo" style="margin:0">
-            <img src="Images/Hero.jpg" alt="Grant Walker sitting in a green armchair with a Fender Stratocaster" loading="lazy" />
+            <img src="Images/gallery/grand-piano.jpg" alt="Grant Walker at a grand piano, black and white" loading="lazy" />
             <figcaption>Grant Walker</figcaption>
           </figure>
 
@@ -620,12 +713,39 @@
 
             <div class="btn-row">
               <a class="btn btn-primary" href="#music" data-view-link>Hear the music</a>
+              <a class="btn btn-ghost" href="#photos" data-view-link>See photos</a>
               <a class="btn btn-ghost" href="#contact" data-view-link>Get in touch</a>
             </div>
           </div>
         </div>
+
+        <div class="about-pair">
+          <button type="button" data-photo="studio-amps" aria-label="View photo: Grant playing beside his amps"><img src="Images/gallery/studio-amps-sm.jpg" alt="Grant playing a black Stratocaster beside a stack of amps" loading="lazy" /></button>
+          <button type="button" data-photo="live-bw" aria-label="View photo: Grant playing live"><img src="Images/gallery/live-bw.jpg" alt="Grant playing guitar at a mic, black and white" loading="lazy" /></button>
+        </div>
       </div>
     </section>
+
+    <!-- =====================================================
+         VIEW: PHOTOS
+         To add a photo: put it in Images/gallery/ and add it to the PHOTOS list in the script.
+         ===================================================== -->
+    <section class="view" id="view-photos" data-title="Photos — Grant Walker">
+      <div class="wrap page-top">
+        <p class="eyebrow">Photos</p>
+        <h1 class="page-title">On stage &amp; <em>in the studio</em></h1>
+        <p class="lede" style="margin-bottom:clamp(2rem,5vw,3.5rem)">Live shows, sessions and shoots. Tap any photo to see it full size.</p>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+
+    <!-- Full-size photo viewer -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+      <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+      <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+      <figure class="lb-figure"><img id="lbImg" alt="" /><figcaption id="lbCount"></figcaption></figure>
+      <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Next photo">›</button>
+    </div>
 
     <!-- =====================================================
          VIEW: CONTACT
@@ -665,6 +785,9 @@
                 </a>
               </li>
             </ul>
+            <button type="button" class="contact-photo" data-photo="mannequin" aria-label="View photo: Grant playing in coloured light">
+              <img src="Images/gallery/mannequin-sm.jpg" alt="Grant playing guitar in coloured light beside a silver mannequin head" loading="lazy" />
+            </button>
           </div>
 
           <!-- This form opens the visitor's email app with the message filled in (no server needed). -->
@@ -701,6 +824,7 @@
       <nav aria-label="Footer">
         <a href="#music" data-view-link>Music</a>
         <a href="#about" data-view-link>About</a>
+        <a href="#photos" data-view-link>Photos</a>
         <a href="#contact" data-view-link>Contact</a>
         <a href="https://open.spotify.com/artist/7KByrO3hI6aLm87fbhaWxL" target="_blank" rel="noopener">Spotify ↗</a>
         <a href="https://music.apple.com/artist/grant-walker/1434142577" target="_blank" rel="noopener">Apple Music ↗</a>
@@ -802,16 +926,71 @@
       showVideo(VIDEOS[0], false);
     }
 
+    /* ---------- Photos ----------
+       Each photo has a full-size file (name.jpg) and a smaller one for the grid (name-sm.jpg)
+       in Images/gallery/. To add one, add both files and a line below. */
+    const PHOTOS = [
+      { file: "live-colour",      alt: "Grant playing a sunburst Stratocaster at a mic, colour film photo" },
+      { file: "red-shirt-vocals", alt: "Grant singing at a vintage microphone in a red shirt" },
+      { file: "pink-light",       alt: "Grant playing guitar under pink and purple lights" },
+      { file: "grand-piano",      alt: "Grant at a grand piano, black and white" },
+      { file: "studio-desk",      alt: "Grant at the mixing desk in the studio" },
+      { file: "leopard-strat",    alt: "Grant in a leopard-print shirt playing a Stratocaster" },
+      { file: "studio-amps",      alt: "Grant playing a black Stratocaster beside a stack of amps" },
+      { file: "mannequin",        alt: "Grant playing guitar in coloured light beside a silver mannequin head" },
+      { file: "live-bw",          alt: "Grant playing guitar at a mic, black and white film photo" }
+    ];
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = PHOTOS.map((ph, i) => `
+      <button type="button" class="g-item" data-i="${i}" aria-label="View photo: ${esc(ph.alt)}">
+        <img src="Images/gallery/${ph.file}-sm.jpg" alt="${esc(ph.alt)}" loading="lazy" />
+      </button>`).join("");
+
+    const lb = document.getElementById("lightbox"), lbImg = document.getElementById("lbImg"), lbCount = document.getElementById("lbCount");
+    let lbIndex = 0, lbOpener = null;
+    const lbShow = i => {
+      lbIndex = (i + PHOTOS.length) % PHOTOS.length;
+      const ph = PHOTOS[lbIndex];
+      lbImg.src = `Images/gallery/${ph.file}.jpg`; lbImg.alt = ph.alt;
+      lbCount.textContent = `${lbIndex + 1} / ${PHOTOS.length}`;
+      new Image().src = `Images/gallery/${PHOTOS[(lbIndex + 1) % PHOTOS.length].file}.jpg`; // preload next
+    };
+    const lbOpen = (i, opener) => { lbOpener = opener; lbShow(i); lb.hidden = false; document.body.style.overflow = "hidden"; document.getElementById("lbClose").focus(); };
+    const lbCloseFn = () => { lb.hidden = true; document.body.style.overflow = ""; lbOpener && lbOpener.focus(); };
+    gallery.addEventListener("click", e => { const b = e.target.closest(".g-item"); if (b) lbOpen(+b.dataset.i, b); });
+    // Photos placed on other pages (data-photo="file-name") open the same viewer
+    document.querySelectorAll("[data-photo]").forEach(b => b.addEventListener("click", () => {
+      const i = PHOTOS.findIndex(ph => ph.file === b.dataset.photo); if (i > -1) lbOpen(i, b);
+    }));
+    document.getElementById("lbClose").addEventListener("click", lbCloseFn);
+    document.getElementById("lbPrev").addEventListener("click", () => lbShow(lbIndex - 1));
+    document.getElementById("lbNext").addEventListener("click", () => lbShow(lbIndex + 1));
+    lb.addEventListener("click", e => { if (e.target === lb || e.target.classList.contains("lb-figure")) lbCloseFn(); });
+    document.addEventListener("keydown", e => {
+      if (lb.hidden) return;
+      if (e.key === "Escape") lbCloseFn();
+      if (e.key === "ArrowLeft") lbShow(lbIndex - 1);
+      if (e.key === "ArrowRight") lbShow(lbIndex + 1);
+    });
+    let touchX = null;   // swipe left/right on phones
+    lb.addEventListener("touchstart", e => { touchX = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener("touchend", e => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX; touchX = null;
+      if (Math.abs(dx) > 50) lbShow(lbIndex + (dx < 0 ? 1 : -1));
+    });
+    window.addEventListener("hashchange", () => { if (!lb.hidden) lbCloseFn(); });
+
     /* ---------- Settings ---------- */
     const CONTACT_EMAIL = "grantelliotwalker@gmail.com";
-    const VIEWS = ["home", "music", "about", "contact"];
+    const VIEWS = ["home", "music", "about", "photos", "contact"];
 
     const topBar = document.getElementById("topBar");
     const hamburger = document.getElementById("hamburger");
     const sideNav = document.getElementById("sideNav");
 
     /* ---------- View switching (reads the #hash in the URL) ----------
-       #home, #music, #about, #contact each show one <section class="view">.
+       #home, #music, #about, #photos, #contact each show one <section class="view">.
        Old links like Home.html still work via small redirect files. */
     function showView() {
       let name = location.hash.replace("#", "").toLowerCase();
