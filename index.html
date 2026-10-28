@@ -320,6 +320,24 @@
     .yt-card:hover .yt-thumb::after, .yt-card:focus-visible .yt-thumb::after, .yt-card[aria-current="true"] .yt-thumb::after { opacity: 1; transform: none; }
     .yt-card[aria-current="true"] .yt-thumb { outline: 2px solid var(--orange); outline-offset: 2px; }
     .yt-card h4 { font-family: var(--display); font-variation-settings: "SOFT" 100; font-size: 1.1rem; font-weight: 700; line-height: 1.2; margin: 0; }
+    /* Big player: play button always visible and centred (phones can't hover) */
+    .yt-player .yt-card .yt-thumb { border-radius: 0; }
+    .yt-player .yt-card .yt-thumb::after {
+      opacity: 1; width: 76px; height: 76px; background-size: 32px;
+      left: 50%; top: 50%; right: auto; bottom: auto; transform: translate(-50%, -50%);
+    }
+    .yt-player .yt-card:hover .yt-thumb::after { transform: translate(-50%, -50%) scale(1.08); }
+    /* Video list: small thumbnail beside the title */
+    .yt-layout, #videos { max-width: 1320px; }
+    .yt-layout .yt-grid { grid-template-columns: minmax(0, 1fr); gap: .85rem; }
+    .yt-layout .yt-grid .yt-card { flex-direction: row; align-items: center; gap: 1rem; }
+    .yt-layout .yt-grid .yt-thumb { width: clamp(130px, 38%, 170px); flex: none; }
+    .yt-layout .yt-grid .yt-thumb::after { width: 32px; height: 32px; right: .5rem; bottom: .5rem; background-size: 15px; }
+    /* Wide screens: list sits beside the player instead of under it */
+    @media (min-width: 1000px) {
+      .yt-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 1.5rem; align-items: start; }
+      .yt-layout .yt-grid { margin-top: 0; }
+    }
     .yt-empty { border: 1px dashed var(--line); border-radius: var(--radius); padding: 2rem; text-align: center; color: var(--muted); }
     .yt-empty p { margin: 0 0 1.25rem; }
 
@@ -760,6 +778,7 @@
         src="https://www.youtube-nocookie.com/embed/videoseries?list=${uploads}&rel=0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy"></iframe></div>`;
     } else {
+      ytWrap.classList.add("yt-layout");
       ytWrap.innerHTML = `<div class="yt-player" id="ytPlayer"></div><div class="yt-grid" id="ytGrid"></div>`;
       const player = document.getElementById("ytPlayer"), ytGrid = document.getElementById("ytGrid");
       // Nothing from YouTube loads until a thumbnail is clicked (keeps the page fast).
